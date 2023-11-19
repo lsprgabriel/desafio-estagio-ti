@@ -48,5 +48,39 @@ export class AuthService {
             }
         };
     }
+
+    // /api/users payload
+    async getUsers() {
+        const users = await this.usersService.users({});
+        return {
+            message: 'Usuários encontrados com sucesso!',
+            data: users,
+        };
+    }
+
+    // /api/users/:id payload
+    async getUser(id: any) {
+        const user = await this.usersService.user({ id: id });
+        return {
+            message: 'Usuário encontrado com sucesso!',
+            data: user,
+        };
+    }
+
+    async updateUser(id: any, user: any) {
+        const updatedUser = await this.usersService.updateUser({ where: id , data: user });
+        return {
+            message: 'Usuário atualizado com sucesso!',
+            data: updatedUser,
+        };
+    }
+
+    async deleteUser(id: any) {
+        const deletedUser = await this.usersService.deleteUser(id);
+        return {
+            message: 'Usuário deletado com sucesso!',
+            data: deletedUser,
+        };
+    }
 }
 
