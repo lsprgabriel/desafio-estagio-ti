@@ -1,0 +1,444 @@
+{
+	"info": {
+		"_postman_id": "d37122b5-6c7d-4e50-9ad2-43158e414a6d",
+		"name": "Documentação da API",
+		"description": "Bem-vindo à documentação da API **desafio-estagio-ti**. Esta API fornece endpoints para realizar operações CRUD (CREATE, READ, UPDATE, DELETE) relacionadas a usuários.\n\n## Como começar\n\nEsta documentação guiará você através dos diferentes endpoints disponíveis na API.\n\n### Cadastro de Usuário\n\n- **Descrição**: Este endpoint permite cadastrar um novo usuário.\n- **Método**: POST\n- **URL**: `http://localhost:3000/api/signup`\n- **Corpo da Requisição**:\n    \n\n``` json\n{\n  \"name\": \"Gabriel\",\n  \"age\": 19,\n  \"email\": \"gabriel@gabriel.com\",\n  \"password\": \"gabriel123\",\n  \"isAdmin\": false\n}\n\n ```\n\n### Login\n\n- **Descrição**: Este endpoint permite autenticar um usuário.\n- **Método**: POST\n- **URL**: `http://localhost:3000/api/login`\n- **Corpo da Requisição**:\n    \n\n``` json\n{\n  \"email\": \"gabriel@gabriel.com\",\n  \"password\": \"gabriel123\"\n}\n\n ```\n\n### Ler todos os usuários\n\n- **Descrição**: Este endpoint retorna todos os usuários cadastrados.\n- **Método**: GET\n- **URL**: `http://localhost:3000/api/users`\n- **Autenticação**: JWT Token de um Admin necessário.\n- **Exemplo de Resposta Esperada**:\n    \n\n``` json\n{\n    \"message\": \"Usuários encontrados com sucesso!\",\n    \"data\": [\n        {\n            \"id\": \"6559af60b1404cc9cb2cb786\",\n            \"name\": \"Gabriel\",\n            \"age\": 19,\n            \"email\": \"gabriel@gabriel.com\",\n            \"password\": \"$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W\",\n            \"isAdmin\": false\n        },\n        {\n            \"id\": \"6559b1952629f63665cd4948\",\n            \"name\": \"Admin\",\n            \"age\": 42,\n            \"email\": \"adminadmin\",\n            \"password\": \"$2b$10$9zuQ34Y4NBnclSrEj90ay.WQJW.vV53pB23Q9RLqpYTWrB8kcZjY.\",\n            \"isAdmin\": true\n        }\n    ]\n}\n\n ```\n\n### Ler usuário específico\n\n- **Descrição**: Este endpoint retorna informações de um usuário específico.\n- **Método**: GET\n- **URL**: `http://localhost:3000/api/user/:id`\n- **Parâmetros de Rota**: id (ID do usuário)\n- **Autenticação**: JWT Token de um Admin necessário.\n- **Exemplo de Resposta Esperada**:\n    \n\n``` json\n{\n    \"message\": \"Usuário encontrado com sucesso!\",\n    \"data\": {\n            \"id\": \"6559af60b1404cc9cb2cb786\",\n            \"name\": \"Gabriel\",\n            \"age\": 19,\n            \"email\": \"gabriel@gabriel.com\",\n            \"password\": \"$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W\",\n            \"isAdmin\": false\n        },\n}\n\n ```\n\n### Editar usuário\n\n- **Descrição**: Este endpoint permite editar informações de um usuário existente.\n- **Método**: PUT\n- **UR**: `http://localhost:3000/api/user/:id`\n- **Parâmetros de Rota**: id (ID do usuário)\n- **Corpo da Requisição**:\n    \n\n``` json\n{\n  \"name\": \"Gabriel\",\n  \"age\": 19,\n  \"email\": \"ogabrielpereira@pm.me\",\n  \"isAdmin\": true\n}\n\n ```\n\n- **Autenticação**: JWT Token de um Admin necessário.\n- **Exemplo de Resposta Esperada**:\n    \n\n``` json\n{\n    \"message\": \"Usuário atualizado com sucesso!\",\n    \"data\": {\n        \"id\": \"6559af60b1404cc9cb2cb786\",\n        \"name\": \"Gabriel\",\n        \"age\": 19,\n        \"email\": \"ogabrielpereira@pm.me\",\n        \"password\": \"$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W\",\n        \"isAdmin\": true\n    }\n}\n\n ```\n\n### Deletar usuário\n\n- **Descrição:** Este endpoint permite excluir um usuário existente.\n- **Método**: DELETE\n- **URL**: `http://localhost:3000/api/user/:id`\n- **Parâmetros de Rota**: id (ID do usuário)\n- **Autenticação**: JWT Token de um Admin necessário.\n- **Exemplo de Resposta Esperada**:\n    \n\n``` json\n{\n    \"message\": \"Usuário deletado com sucesso!\",\n    \"data\": {\n        \"id\": \"6559af60b1404cc9cb2cb786\",\n        \"name\": \"Gabriel\",\n        \"age\": 19,\n        \"email\": \"ogabrielpereira@pm.me\",\n        \"password\": \"$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W\",\n        \"isAdmin\": true\n    }\n}\n\n ```\n\n### Observações\n\n- Certifique-se de incluir o token JWT válido nas requisições autenticadas.\n- Consulte a [documentação do Postman](https://learning.postman.com/docs/introduction/overview/) para mais informações sobre como usar variáveis, autorizações e testes.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19300414"
+	},
+	"item": [
+		{
+			"name": "Cadastro",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Admin\",\n    \"age\" : 999,\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\",\n    \"isAdmin\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/signup",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"signup"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"admin@admin.com\",\n    \"password\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/login",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ler todos os usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "headerPrefix",
+							"value": "Bearer {{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "{{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{\n    \n}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/users",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Ler usuário específico",
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "headerPrefix",
+							"value": "Bearer {{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "{{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "65599fb9f674e2bc3aac8be4 ",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{}",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}api/user/:id",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "655a3a1799a3490febf84e95"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "headerPrefix",
+							"value": "Bearer {{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "{{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{\n    \n}",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"password\": \"adminadmin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/user/:id",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "655a3a1799a3490febf84e95"
+						}
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "jwt",
+					"jwt": [
+						{
+							"key": "headerPrefix",
+							"value": "Bearer {{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "secret",
+							"value": "{{jwt}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "payload",
+							"value": "{\n    \n}",
+							"type": "string"
+						},
+						{
+							"key": "isSecretBase64Encoded",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "algorithm",
+							"value": "HS256",
+							"type": "string"
+						},
+						{
+							"key": "queryParamKey",
+							"value": "token",
+							"type": "string"
+						},
+						{
+							"key": "header",
+							"value": "{}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}api/user/:id",
+					"host": [
+						"{{base_url}}api"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6559a00ef674e2bc3aac8be5sda"
+						}
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/"
+		},
+		{
+			"key": "jwt",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
