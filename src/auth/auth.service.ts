@@ -19,73 +19,131 @@ export class AuthService {
     }
 
     async login(user: any) {
-        const payload = {
-            id: user.id,
-            email: user.email,
-            isAdmin: user.isAdmin,
-        };
-        return {
-            message: 'Login bem sucedido!',
-            data: {
-                ...payload,
-                access_token: this.jwtService.sign(payload),
+        try {
+            const userExists = await this.usersService.user({ email: user.email });
+            if (!userExists) {
+                return {
+                    message: 'Usuário não existe!',
+                    data: {},
+                };
+            } else {
+                const payload = {
+                    id: user.id,
+                    email: user.email,
+                    isAdmin: user.isAdmin,
+                };
+                return {
+                    message: 'Login bem sucedido!',
+                    data: {
+                        ...payload,
+                        access_token: this.jwtService.sign(payload),
+                    }
+                };
             }
-        };
+        }  catch (error) {
+            return {
+                message: 'Não foi possível realizar o login!',
+                data: {},
+            };
+        }
     }
 
     async signup(user: any) {
-        const newUser = await this.usersService.createUser(user);
-        const payload = {
-            id: user.id,
-            email: user.email,
-            isAdmin: user.isAdmin,
-        };
-        return {
-            message: 'Usuário criado com sucesso!',
-            data: {
-                ...payload,
-                access_token: this.jwtService.sign(payload),
+        try {
+            const userExists = await this.usersService.user({ email: user.email });
+            if (userExists) {
+                return {
+                    message: 'Usuário já existe!',
+                    data: {},
+                };
+            } else {
+                const newUser = await this.usersService.createUser(user);
+                const payload = {
+                    id: user.id,
+                    email: user.email,
+                    isAdmin: user.isAdmin,
+                };
+                return {
+                    message: 'Usuário criado com sucesso!',
+                    data: {
+                        ...payload,
+                        access_token: this.jwtService.sign(payload),
+                    }
+                };
             }
-        };
+        } catch (error) {
+            return {
+                message: 'Não foi possível criar o usuário!',
+                data: {},
+            };
+        }
     }
 
     // /api/users payload
     async getUsers() {
-        const users = await this.usersService.users({});
-        return {
-            message: 'Usuários encontrados com sucesso!',
-            data: users,
-        };
+        try {
+            const users = await this.usersService.users({});
+            return {
+                message: 'Usuários encontrados com sucesso!',
+                data: users,
+            };
+        } catch (error) {
+            return {
+                message: 'Usuários não encontrados!',
+                data: {},
+            };
+        }
     }
 
     // /api/users/:id payload
     async getUser(id: any) {
-        const user = await this.usersService.user({ id: id });
-        return {
-            message: 'Usuário encontrado com sucesso!',
-            data: user,
-        };
+        try {
+            const user = await this.usersService.user({ id: id });
+            return {
+                message: 'Usuário encontrado com sucesso!',
+                data: user,
+            };
+        } catch (error) {
+            return {
+                message: 'Usuário não encontrado!',
+                data: {},
+            };
+        }
     }
 
     async updateUser(id: any, user: any) {
-        const updatedUser = await this.usersService.updateUser({
-            where: { id: id },
-            data: user,
-        });
-        return {
-            message: 'Usuário atualizado com sucesso!',
-            data: updatedUser,
-        };
+        try {
+            const updatedUser = await this.usersService.updateUser({
+                where: { id: id },
+                data: user,
+            });
+            return {
+                message: 'Usuário atualizado com sucesso!',
+                data: updatedUser,
+            };
+        } catch (error) {
+            return {
+                message: 'Não foi possível atualizar o usuário!',
+                data: {},
+            };
+        }
     }
 
     async deleteUser(id: any) {
-        const deletedUser = await this.usersService.deleteUser({
-            id: id,
-        });
-        return {
-            message: 'Usuário deletado com sucesso!',
-            data: deletedUser,
-        };
+        try {
+            const deletedUser = await this.usersService.deleteUser({
+                id: id,
+            });
+            return {
+                message: 'Usuário deletado com sucesso!',
+                data: deletedUser,
+            };
+        } catch (error) {
+            return {
+                message: 'Não foi possível deletar o usuário!',
+                data: {},
+            };
+        }
     }
 }
 

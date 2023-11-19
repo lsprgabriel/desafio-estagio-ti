@@ -61,6 +61,4 @@ export class AppController {
   async deleteUser(@Request() req) {
     return this.authService.deleteUser(req.params.id);
   }
-
-
 }
