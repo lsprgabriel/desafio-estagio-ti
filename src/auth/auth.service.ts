@@ -128,6 +128,9 @@ export class AuthService {
 
     async updateUser(id: any, user: any) {
         try {
+            if (user.password) {
+                user.password = await this.hashPassword(user.password);
+            } 
             const updatedUser = await this.usersService.updateUser({
                 where: { id: id },
                 data: user,
