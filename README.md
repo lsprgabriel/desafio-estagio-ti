@@ -15,7 +15,7 @@ Esta documentação guiará você através dos diferentes endpoints disponíveis
 
 ```json
 {
-  "name": "Gabruiel",
+  "name": "Gabriel",
   "age": 19,
   "email": "gabriel@gabriel.com",
   "password": "gabriel123",
@@ -27,60 +27,125 @@ Esta documentação guiará você através dos diferentes endpoints disponíveis
 
 - **Descrição**: Este endpoint permite autenticar um usuário.
 - **Método**: POST
-- **URL**: http://localhost:3000/api/login
+- **URL**: `http://localhost:3000/api/login`
 - **Corpo da Requisição**:
 
 ```json
 {
-  "email": "ogabrielpereira@pm.me",
-  "password": "UT925250"
+  "email": "gabriel@gabriel.com",
+  "password": "gabriel123"
 }
 ```
 ### Ler todos os usuários
 
 - **Descrição**: Este endpoint retorna todos os usuários cadastrados.
 - **Método**: GET
-- **URL**: http://localhost:3000/api/users
-- **Autenticação**: JWT Token necessário
-- **Resposta Esperada**: Status 200
+- **URL**: `http://localhost:3000/api/users`
+- **Autenticação**: JWT Token de um Admin necessário.
+- **Exemplo de Resposta Esperada**: 
+
+```json
+{
+    "message": "Usuários encontrados com sucesso!",
+    "data": [
+        {
+            "id": "6559af60b1404cc9cb2cb786",
+            "name": "Gabriel",
+            "age": 19,
+            "email": "gabriel@gabriel.com",
+            "password": "$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W",
+            "isAdmin": false
+        },
+        {
+            "id": "6559b1952629f63665cd4948",
+            "name": "Admin",
+            "age": 42,
+            "email": "adminadmin",
+            "password": "$2b$10$9zuQ34Y4NBnclSrEj90ay.WQJW.vV53pB23Q9RLqpYTWrB8kcZjY.",
+            "isAdmin": true
+        }
+    ]
+}
+```
 
 ### Ler usuário específico
 
 - **Descrição**: Este endpoint retorna informações de um usuário específico.
 - **Método**: GET
-- **URL**: http://localhost:3000/api/user/:id
+- **URL**: `http://localhost:3000/api/user/:id`
 - **Parâmetros de Rota**: id (ID do usuário)
-- **Autenticação**: JWT Token necessário
-- **Resposta Esperada**: Status 200
+- **Autenticação**: JWT Token de um Admin necessário.
+- **Exemplo de Resposta Esperada**: 
+  
+```json
+{
+    "message": "Usuário encontrado com sucesso!",
+    "data": {
+            "id": "6559af60b1404cc9cb2cb786",
+            "name": "Gabriel",
+            "age": 19,
+            "email": "gabriel@gabriel.com",
+            "password": "$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W",
+            "isAdmin": false
+        },
+}
+```
 
 ### Editar usuário
 
 - **Descrição**: Este endpoint permite editar informações de um usuário existente.
 - **Método**: PUT
-- **UR**: http://localhost:3000/api/user/:id
+- **UR**: `http://localhost:3000/api/user/:id`
 - **Parâmetros de Rota**: id (ID do usuário)
 - **Corpo da Requisição**:
 
 ```json
 {
-  "name": "GabrielAdmin",
+  "name": "Gabriel",
   "age": 19,
-  "email": "ogabrielpereiraadmin@pm.me",
-  "password": "UT925250",
+  "email": "ogabrielpereira@pm.me",
   "isAdmin": true
 }
 ```
-- **Autenticação**: JWT Token necessário
-- **Resposta Esperada**: Status 200, 201 ou 204
+- **Autenticação**: JWT Token de um Admin necessário.
+- **Exemplo de Resposta Esperada**:
+
+```json
+{
+    "message": "Usuário atualizado com sucesso!",
+    "data": {
+        "id": "6559af60b1404cc9cb2cb786",
+        "name": "Gabriel",
+        "age": 19,
+        "email": "ogabrielpereira@pm.me",
+        "password": "$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W",
+        "isAdmin": true
+    }
+}
+```
 
 ### Deletar usuário
 
 - **Descrição:** Este endpoint permite excluir um usuário existente.
 - **Método**: DELETE
-- **URL**: http://localhost:3000/api/user/:id
+- **URL**: `http://localhost:3000/api/user/:id`
 - **Parâmetros de Rota**: id (ID do usuário)
-- **Autenticação**: JWT Token necessário
-- **Resposta Esperada**: Status 200, 202 ou 204
+- **Autenticação**: JWT Token de um Admin necessário.
+- **Exemplo de Resposta Esperada**: 
+
+```json
+{
+    "message": "Usuário deletado com sucesso!",
+    "data": {
+        "id": "6559af60b1404cc9cb2cb786",
+        "name": "Gabriel",
+        "age": 19,
+        "email": "ogabrielpereira@pm.me",
+        "password": "$2b$10$m82Q78LZxFyV8Ct4aiLiyOKwlZwNRpd16B0uI./UdpF87MQ.SpU2W",
+        "isAdmin": true
+    }
+}
+```
 
 ### Observações
 
