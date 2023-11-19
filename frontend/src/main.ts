@@ -6,13 +6,15 @@ import './index.css'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Signup from './views/Signup.vue'
+import Redirect from './views/Redirect.vue'
 
 const router = createRouter({
     history: createWebHistory(),
   routes: [
     { path: '/', component: Home },
     { path: '/cadastrar', component: Signup },
-    { path: '/entrar', component: Login }
+    { path: '/entrar', component: Login },
+    { path: '/redirect', component: Redirect }  
   ]
 })
 

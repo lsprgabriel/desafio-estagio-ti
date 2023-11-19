@@ -67,6 +67,7 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -80,19 +81,28 @@ export default {
         };
     },
     methods: {
-        // POST Request to create a new user localhost:3000/api/signup
         async submitForm() {
             try {
-                await fetch('http://127.0.0.1:3000/api/signup', {
+                const response = await fetch('http://127.0.0.1:3000/api/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(this.formData),
                 });
-                this.$router.push('/entrar');
+                if (response.ok) {
+                    const res = await response.json();
+                    const responseBody = await res;
+                    console.log('Response Body:', responseBody);
+                    if(res.data.access_token) {
+                        // push with component
+                        this.$router.push({ name: 'redirect', params: { msg: "Teste" } });
+                    }
+                } else {
+                    console.error('Request failed with status:', response.status, response.statusText);
+                }
             } catch (error) {
-                console.log(error);
+                console.error('Error:', error);
             }
         },
     },
