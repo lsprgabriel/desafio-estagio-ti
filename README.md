@@ -3,7 +3,7 @@
 ## Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/try/download/community), [Postman](https://www.postman.com/downloads/) e [Docker](https://www.docker.com/products/docker-desktop)/[Docker-compose](https://docs.docker.com/compose/install/).
+[Docker](https://www.docker.com/products/docker-desktop) e [Docker-compose](https://docs.docker.com/compose/install/).
 
 ## Rodando o Backend (servidor)
 
