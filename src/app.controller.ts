@@ -4,12 +4,10 @@ import { AdminOnly } from './auth/is-admin.decorator';
 import { AdminGuard } from './auth/is-admin.guard';
 import { LocalAuthGuard } from './auth/local-auth.guard';
 import { JwtAuthGuard } from './auth/jwt-auth.guard';
-import { UsersService } from './users/users.service';
 
 @Controller()
 export class AppController {
   constructor(
-    private usersService: UsersService,
     private authService: AuthService
   ) { }
 
