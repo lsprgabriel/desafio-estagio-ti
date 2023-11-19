@@ -1,3 +1,33 @@
+# Como executar o projeto
+
+## Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Git](https://git-scm.com/downloads), [Node.js](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/try/download/community), [Postman](https://www.postman.com/downloads/) e [Docker](https://www.docker.com/products/docker-desktop)/[Docker-compose](https://docs.docker.com/compose/install/).
+
+## Rodando o Backend (servidor)
+
+##### Clone este repositório:
+    
+```bash
+$ git clone https://github.com/lsprgabriel/desafio-estagio-ti.git
+```
+
+##### Acesse a pasta do projeto no terminal/cmd:
+
+```bash
+$ cd desafio-estagio-ti
+```
+
+##### Execute o docker-compose para criar o container do MongoDB e do NestJS:
+
+```bash
+$ docker-compose up -d # Talvez seja necessário executar como administrador(sudo)
+```
+
+Pronto! O servidor está rodando em http://localhost:3000
+
+Caso algum erro ocorra, me contate em <eu@lsprlab.cloud\>
 # Documentação da API
 
 Bem-vindo à documentação da API **desafio-estagio-ti**. Esta API fornece endpoints para realizar operações CRUD (CREATE, READ, UPDATE, DELETE) relacionadas a usuários.
