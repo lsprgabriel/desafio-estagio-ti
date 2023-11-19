@@ -1,73 +1,88 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Documentação da API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Bem-vindo à documentação da API **desafio-estagio-ti**. Esta API fornece endpoints para realizar operações CRUD (CREATE, READ, UPDATE, DELETE) relacionadas a usuários.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Como começar
 
-## Description
+Esta documentação guiará você através dos diferentes endpoints disponíveis na API.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Cadastro de Usuário
 
-## Installation
+- **Descrição**: Este endpoint permite cadastrar um novo usuário.
+- **Método**: POST
+- **URL**: `http://localhost:3000/api/signup`
+- **Corpo da Requisição**:
 
-```bash
-$ yarn install
+```json
+{
+  "name": "Gabruiel",
+  "age": 19,
+  "email": "gabriel@gabriel.com",
+  "password": "gabriel123",
+  "isAdmin": false
+}
 ```
 
-## Running the app
+### Login
 
-```bash
-# development
-$ yarn run start
+- **Descrição**: Este endpoint permite autenticar um usuário.
+- **Método**: POST
+- **URL**: http://localhost:3000/api/login
+- **Corpo da Requisição**:
 
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+```json
+{
+  "email": "ogabrielpereira@pm.me",
+  "password": "UT925250"
+}
 ```
+### Ler todos os usuários
 
-## Test
+- **Descrição**: Este endpoint retorna todos os usuários cadastrados.
+- **Método**: GET
+- **URL**: http://localhost:3000/api/users
+- **Autenticação**: JWT Token necessário
+- **Resposta Esperada**: Status 200
 
-```bash
-# unit tests
-$ yarn run test
+### Ler usuário específico
 
-# e2e tests
-$ yarn run test:e2e
+- **Descrição**: Este endpoint retorna informações de um usuário específico.
+- **Método**: GET
+- **URL**: http://localhost:3000/api/user/:id
+- **Parâmetros de Rota**: id (ID do usuário)
+- **Autenticação**: JWT Token necessário
+- **Resposta Esperada**: Status 200
 
-# test coverage
-$ yarn run test:cov
+### Editar usuário
+
+- **Descrição**: Este endpoint permite editar informações de um usuário existente.
+- **Método**: PUT
+- **UR**: http://localhost:3000/api/user/:id
+- **Parâmetros de Rota**: id (ID do usuário)
+- **Corpo da Requisição**:
+
+```json
+{
+  "name": "GabrielAdmin",
+  "age": 19,
+  "email": "ogabrielpereiraadmin@pm.me",
+  "password": "UT925250",
+  "isAdmin": true
+}
 ```
+- **Autenticação**: JWT Token necessário
+- **Resposta Esperada**: Status 200, 201 ou 204
 
-## Support
+### Deletar usuário
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- **Descrição:** Este endpoint permite excluir um usuário existente.
+- **Método**: DELETE
+- **URL**: http://localhost:3000/api/user/:id
+- **Parâmetros de Rota**: id (ID do usuário)
+- **Autenticação**: JWT Token necessário
+- **Resposta Esperada**: Status 200, 202 ou 204
 
-## Stay in touch
+### Observações
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Certifique-se de incluir o token JWT válido nas requisições autenticadas.
+- Consulte a [documentação do Postman](https://learning.postman.com/docs/introduction/overview/) para mais informações sobre como usar variáveis, autorizações e testes.
