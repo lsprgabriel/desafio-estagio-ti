@@ -68,7 +68,10 @@ export class AuthService {
     }
 
     async updateUser(id: any, user: any) {
-        const updatedUser = await this.usersService.updateUser({ where: id , data: user });
+        const updatedUser = await this.usersService.updateUser({
+            where: { id: id },
+            data: user,
+        });
         return {
             message: 'Usuário atualizado com sucesso!',
             data: updatedUser,
@@ -76,7 +79,9 @@ export class AuthService {
     }
 
     async deleteUser(id: any) {
-        const deletedUser = await this.usersService.deleteUser(id);
+        const deletedUser = await this.usersService.deleteUser({
+            id: id,
+        });
         return {
             message: 'Usuário deletado com sucesso!',
             data: deletedUser,
