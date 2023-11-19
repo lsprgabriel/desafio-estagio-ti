@@ -11,7 +11,6 @@ services:
       - db
     networks:
       - nestnet
-
   db:
     build: 
       context: ./docker/db
