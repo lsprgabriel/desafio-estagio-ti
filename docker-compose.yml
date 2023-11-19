@@ -1,22 +1,7 @@
 version: "3.1"
-services: 
-  mongo:
-    build: 
-      context: ./docker/mongo
-      dockerfile: Dockerfile
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
-      MONGO_INITDB_DATABASE: db
-      MONGO_REPLICA_HOST: mongo
-      MONGO_REPLICA_PORT: "27017"
-    ports:
-      - 27017:27017
-    networks:
-      - nestnet
+services:
 
-  nest:
+  backend:
     build: 
       context: .
       dockerfile: Dockerfile
@@ -24,7 +9,23 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - mongo
+      - db
+    networks:
+      - nestnet
+
+  db:
+    build: 
+      context: ./docker/db
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: db
+      MONGO_REPLICA_HOST: db
+      MONGO_REPLICA_PORT: "27017"
+    ports:
+      - 27017:27017
     networks:
       - nestnet
 
