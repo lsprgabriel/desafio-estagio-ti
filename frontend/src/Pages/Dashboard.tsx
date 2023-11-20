@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import{ useState, useEffect } from 'react';
 
 export default function DashboardPage() {
     const [users, setUsers] = useState([]);
-    const [error, setError] = useState(null);
+    const [error] = useState(null);
 
     useEffect(() => {
         const jwtToken = sessionStorage.getItem('token');
@@ -29,6 +29,10 @@ export default function DashboardPage() {
         sessionStorage.removeItem('token');
         window.location.href = '/';
     };
+
+    const handleEditUser = (userId: any) => {
+        window.location.href = `/editar/${userId}`;
+    }
 
     const handleDeleteUser = (userId: any) => {
         const jwtToken = sessionStorage.getItem('token');
@@ -57,7 +61,7 @@ export default function DashboardPage() {
             <div className="text-center">
                 <div className="mb-4">
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>
-                        Logout
+                        Sair
                     </button>
                 </div>
                 {error && <p className="text-red-500">Error: {error}</p>}
@@ -66,6 +70,7 @@ export default function DashboardPage() {
                         {users.map((user: any) => (
                             <div key={user.id} className="border border-gray-300 p-4 m-4 rounded-md max-w-xs">
                                 <h3 className="text-xl font-bold mb-2">{user.name}</h3>
+                                <p className="text-gray-600 mb-2">{user.id}</p>
                                 <p className="text-gray-600 mb-4">{user.email}</p>
                                 <div className='flex px-6'>
                                     <button
@@ -73,7 +78,8 @@ export default function DashboardPage() {
                                         onClick={() => handleDeleteUser(user.id)}>
                                         Deletar
                                     </button>
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        onClick={() => handleEditUser(user.id)}>
                                         Editar
                                     </button>
                                 </div>
