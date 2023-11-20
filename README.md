@@ -27,7 +27,7 @@ $ docker-compose up -d # Talvez seja necessário executar como administrador(sud
 
 Pronto! 
 
-O backend em Nestjs estará rodando em http://localhost:3000 
+O Backend em Nestjs estará rodando em http://localhost:3000 
 
 O Frontend em Vite + ReactJS em http://localhost:8000
 
