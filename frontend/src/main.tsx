@@ -10,6 +10,7 @@ import Error from './Pages/Error.tsx'
 import SignupPage from './Pages/Signup.tsx';
 import LoginPage from './Pages/Login.tsx';
 import DashboardPage from './Pages/Dashboard.tsx';
+import ForbiddenPage from './Pages/Forbidden.tsx';
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     Component: DashboardPage,
-    errorElement: <Error />,
-  }
+    errorElement: <ForbiddenPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
