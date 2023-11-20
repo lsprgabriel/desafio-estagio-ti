@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "../Components/modals/SuccessModal";
 
 export default function SignupPage() {
-    const [showModal, setShowModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     onsubmit = async (event: any) => {
         event.preventDefault();
@@ -26,7 +26,7 @@ export default function SignupPage() {
                     alert(`O email ${email.value} já está cadastrado! Tente outro.`);
                     return;
                 } else if (data.message.includes('sucesso')) {
-                    alert('Usuário cadastrado com sucesso! Clique em OK para ser redirecionado.');
+                    setShowSuccessModal(true);
                     sessionStorage.setItem('token', data.data.access_token);
                     setTimeout(() => {
                         window.location.href = '/dashboard';
@@ -37,10 +37,6 @@ export default function SignupPage() {
             .catch((error) => {
                 console.error('Error:', error);
             });
-        // setShowModal(true);
-        // setTimeout(() => {
-        //     window.location.href = '/dashboard';
-        // }, 2000);
     };
     return (
         <div className="min-h-screen flex items-center justify-center">
@@ -98,7 +94,7 @@ export default function SignupPage() {
                     </div>
                 </form>
             </div>
-            {showModal && <Modal setOpenModal={setShowModal} />}
+            {showSuccessModal && <Modal setOpenModal={setShowSuccessModal} />}
         </div>
     );
 }
