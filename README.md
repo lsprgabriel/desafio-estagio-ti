@@ -5,7 +5,7 @@
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Docker](https://www.docker.com/products/docker-desktop) e [Docker-compose](https://docs.docker.com/compose/install/).
 
-## Rodando o Backend (servidor)
+## Rodando o Sistema
 
 ##### Clone este repositório:
     
@@ -25,7 +25,26 @@ $ cd desafio-estagio-ti
 $ docker-compose up -d # Talvez seja necessário executar como administrador(sudo)
 ```
 
-Pronto! O servidor está rodando em http://localhost:3000
+Pronto! 
+
+O backend em Nestjs estará rodando em http://localhost:3000 
+
+O Frontend em Vite + ReactJS em http://localhost:8000
+
+## Testes 
+Caso esteja testando o sistema e não queira criar vários usuários na "mão", use o arquivo load_db.sh
+
+##### Como executar o arquivo load_db.sh:
+
+```bash
+$ chmod +x load_db.sh
+$ ./load_db.sh
+```
+Pronto!
+
+Agora, para conseguir gerenciar os usuários, crie uma conta de Administrar em http://localhost:8000/api/signup
+
+obs: Não se esqueça de marcar a opção "É administrador" como "Sim".
 
 Caso algum erro ocorra, me contate em <eu@lsprlab.cloud\>
 # Documentação da API
