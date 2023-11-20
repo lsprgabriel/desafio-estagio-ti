@@ -22,7 +22,6 @@ export default function EditPage() {
                 console.error('Error:', error);
             });
     }, []);
-
     const onsubmit = async (event: any) => {
         event.preventDefault();
         const { name, age, email, password, isAdmin } = event.target.elements;

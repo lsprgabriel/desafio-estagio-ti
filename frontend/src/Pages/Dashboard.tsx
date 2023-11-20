@@ -60,7 +60,7 @@ export default function DashboardPage() {
         <div className="flex justify-center items-center h-screen bg-gray-100">
             <div className="text-center">
                 <div className="mb-4">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleLogout}>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4" onClick={handleLogout}>
                         Sair
                     </button>
                 </div>
@@ -74,7 +74,7 @@ export default function DashboardPage() {
                                 <p className="text-gray-600 mb-4">{user.email}</p>
                                 <div className='flex px-6'>
                                     <button
-                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                                        className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4"
                                         onClick={() => handleDeleteUser(user.id)}>
                                         Deletar
                                     </button>
