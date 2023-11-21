@@ -1,3 +1,20 @@
+# Desafio Técnico - Estágio em TI
+
+## Tecnologias utilizadas
+
+- [NodeJS](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [NestJS](https://nestjs.com/)
+- [Prisma](https://www.prisma.io/)
+- [MongoDB](https://www.mongodb.com/)
+- [JWT](https://jwt.io/)
+- [ReactJS](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Docker](https://www.docker.com/)
+- [Docker-compose](https://docs.docker.com/compose/)
+- [Postman](https://www.postman.com/)
+
 # Como executar o projeto
 
 ## Pré-requisitos
